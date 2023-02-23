@@ -1,3 +1,10 @@
+// Child'lar arası güncelleme istiyoruz. Global State ile bunu yapabiliriz. Lokal olarak da state ve prop'larla yapılır.
+// Lifting State Up: Ortak olan State'leri yukarı taşıyoruz. (Tutorials, getTutorial)
+// Child'larda lazım olan state'leri de prop vasıtasıyla aşağı gönderiyoruz.
+// State'i güncelleyen fonksiyonu prop aracılığıyla child'lara gönderiyoruz. Bu fonksiyonu aşağıda kullandığımızda state güncellendiği için child'daki state de güncellenmiş oluyor.
+
+
+
 import axios from "axios";
 import { useState } from "react";
 

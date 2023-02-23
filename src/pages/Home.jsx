@@ -8,14 +8,13 @@ const Home = () => {
 
   const BASE_URL = "https://tutorial-api.fullstack.clarusway.com/tutorials/";
   const getTutorials = async () => {
-    try{
-  const { data } = await axios(BASE_URL);
-    setTutorials(data);
-    console.log(data);
-    }catch(err){
-      console.log(err)
+    try {
+      const { data } = await axios(BASE_URL);
+      setTutorials(data);
+      console.log(data);
+    } catch (err) {
+      console.log(err);
     }
-  
   };
 
   //? componentDidMount
@@ -26,7 +25,7 @@ const Home = () => {
   return (
     <>
       <AddTutorial getTutorials={getTutorials} />
-      <TutorialList tutorials={tutorials} />
+      <TutorialList tutorials={tutorials} getTutorials={getTutorials} />
     </>
   );
 };
