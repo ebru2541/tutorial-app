@@ -68,6 +68,7 @@ const AddTutorial = ({ getTutorials }) => {
           Submit
         </button>
       </form>
+      
     </div>
   );
 };

@@ -1,8 +1,11 @@
 import { FaEdit } from "react-icons/fa";
 import { AiFillDelete } from "react-icons/ai";
 import axios from "axios";
+import EditTutorial from "./EditTutorial";
+import { useState } from "react";
 
 const TutorialList = ({ tutorials, getTutorials }) => {
+  const [edit, setEdit] = useState(false);
   // const tutorials = [
   //   {
   //     id: 1,
@@ -26,6 +29,25 @@ const TutorialList = ({ tutorials, getTutorials }) => {
     getTutorials();
   };
 
+  const editTutorial = async ({ id, title, description }) => {
+    setEdit(!edit);
+    const BASE_URL = "https://tutorial-api.fullstack.clarusway.com/tutorials";
+    try {
+      await axios.put(`${BASE_URL}/${id}/`, { title, description });
+    } catch (error) {
+      console.log(error);
+    }
+   
+    getTutorials();
+    addtutorials({id, title, description });
+  };
+
+const addtutorials = ({ id, title, description }) => {
+  console.log(title);
+  
+};
+
+  console.log(edit);
   return (
     <div className="container mt-4">
       <table className="table table-striped">
@@ -52,7 +74,17 @@ const TutorialList = ({ tutorials, getTutorials }) => {
                     size={20}
                     type="button"
                     className="me-2 text-warning"
+                    data-bs-toggle="modal"
+                    data-bs-target="#edit-tutor"
+                    onClick={() =>
+                      editTutorial({
+                        id: id,
+                        title: title,
+                        description: description,
+                      })
+                    }
                   />
+
                   <AiFillDelete
                     size={22}
                     type="button"
@@ -65,6 +97,11 @@ const TutorialList = ({ tutorials, getTutorials }) => {
           })}
         </tbody>
       </table>
+      <EditTutorial
+        edit={edit}
+        tutorials={tutorials}
+       addtutorials={addtutorials}
+      />
     </div>
   );
 };
